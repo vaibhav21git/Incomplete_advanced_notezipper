@@ -11,6 +11,7 @@ app.get("/", (req, res) => {
 });
 
 // res.json and res.send are executing like same way returning the json
+//added
 
 app.get("/api/notes", (req, res) => {
   res.json(notes);
