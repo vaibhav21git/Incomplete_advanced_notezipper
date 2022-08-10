@@ -4,13 +4,16 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <>
       <Navbar bg="primary" expand="lg" variant="dark">
         <Container>
-          <Navbar.Brand href="/">Note Zipper</Navbar.Brand>
+          <Navbar.Brand>
+            <Link to="/">Note Zipper</Link>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -26,7 +29,9 @@ function Header() {
                   aria-label="Search"
                 />
               </Form>
-              <Nav.Link href="#action1">My notes</Nav.Link>
+              <Nav.Link>
+                <Link to="/mynotes">My notes</Link>
+              </Nav.Link>
               <NavDropdown
                 title="vaibhav sachdeva"
                 id="navbarScrollingDropdown"
