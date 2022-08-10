@@ -1,14 +1,28 @@
 import React from "react";
 import { Accordion, Badge, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import notes from "../../components/data/notes";
 import Mainscreen from "../../components/Mainscreen";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Mynotes() {
+  const [notes, setnotes] = useState([]);
+
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
     }
   };
+
+  // we cannot call our api inside the useeffect therrfore we need to make a separate function
+  const fetchnotes = async () => {
+    const { data } = await axios.get("/api/notes");
+
+    setnotes(data);
+  };
+
+  useEffect(() => {
+    fetchnotes();
+  }, []);
 
   return (
     <Mainscreen title="Welcome Back">
@@ -18,7 +32,7 @@ function Mynotes() {
         </Button>
       </Link>
       {notes.map((note) => (
-        <Accordion defaultActiveKey={["0"]}>
+        <Accordion key={note._id} defaultActiveKey={["0"]}>
           <Accordion.Item eventKey="0">
             <Card style={{ margin: 10 }}>
               <Card.Header style={{ display: "flex" }}>
