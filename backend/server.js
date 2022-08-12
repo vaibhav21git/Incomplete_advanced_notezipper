@@ -2,10 +2,12 @@ const express = require("express");
 const notes = require("./data/notes");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
+const Userroutes = require("./routes/Userroutes");
 
 const app = express();
 dotenv.config();
-connectDB();
+// connectDB();
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("api is running");
@@ -22,6 +24,8 @@ app.get("/api/notes/:id", (req, res) => {
   const note = notes.find((n) => n._id == req.params.id);
   res.send(note);
 });
+
+app.use("/api/users", Userroutes);
 
 const PORT = process.env.PORT || 5000;
 
