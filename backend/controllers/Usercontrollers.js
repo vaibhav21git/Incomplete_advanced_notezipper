@@ -39,6 +39,8 @@ const authUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
 
+  console.log(email, password);
+
   if (user && (await user.matchPassword(password))) {
     res.status(201).json({
       _id: user._id,
@@ -49,7 +51,8 @@ const authUser = asyncHandler(async (req, res) => {
       token: generatetoken(user._id),
     });
   } else {
-    res.status(400);
+    res.status(401);
+    console.log("vaibhav");
     throw new Error("Invalid Email or Password");
   }
 });
