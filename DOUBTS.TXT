@@ -1,0 +1,2 @@
+1) what is this.modo=ified functionof mongo db
+and how you integrate thsi function with bcrypt
